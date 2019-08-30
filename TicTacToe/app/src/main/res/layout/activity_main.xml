@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_00"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_10"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_20"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="156dp"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_11"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_21"
+        app:layout_constraintStart_toEndOf="@+id/btn_10" />
+
+    <Button
+        android:id="@+id/btn_02"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_12"
+        app:layout_constraintStart_toEndOf="@+id/btn_01" />
+
+    <Button
+        android:id="@+id/btn_10"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_20"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_12"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_22"
+        app:layout_constraintStart_toEndOf="@+id/btn_11" />
+
+    <Button
+        android:id="@+id/btn_01"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_11"
+        app:layout_constraintStart_toEndOf="@+id/btn_00" />
+
+    <Button
+        android:id="@+id/btn_22"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="156dp"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_21" />
+
+    <Button
+        android:id="@+id/btn_21"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="156dp"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_wins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="44dp"
+        android:text="Wins: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_ties"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Ties:"
+        app:layout_constraintEnd_toEndOf="@+id/tv_wins"
+        app:layout_constraintTop_toBottomOf="@+id/tv_wins" />
+
+    <TextView
+        android:id="@+id/tv_losses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="580dp"
+        android:text="Losses:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_ties" />
+
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:text="RESET"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
