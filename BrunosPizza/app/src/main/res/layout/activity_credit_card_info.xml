@@ -6,4 +6,130 @@
     android:layout_height="match_parent"
     tools:context=".CreditCardInfo">
 
+    <Button
+        android:id="@+id/btn_submit_payment"
+        android:layout_width="69dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="44dp"
+        android:text="Pay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_enter_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Enter payment info"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_card_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:text="Card Number"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_name_on_card"
+        app:layout_constraintEnd_toEndOf="@+id/tv_name_on_card" />
+
+    <TextView
+        android:id="@+id/tv_name_on_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:text="Name on Card"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_exp_date"
+        app:layout_constraintEnd_toEndOf="@+id/tv_exp_date" />
+
+    <TextView
+        android:id="@+id/tv_ccv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginBottom="148dp"
+        android:text="CCV"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_exp_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:text="Exp. Date"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_ccv"
+        app:layout_constraintEnd_toEndOf="@+id/tv_ccv" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="69dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:hint="mm/yy"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/et_ccv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_exp_date" />
+
+    <EditText
+        android:id="@+id/et_ccv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="140dp"
+        android:ems="10"
+        android:hint="xxx"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_ccv" />
+
+    <EditText
+        android:id="@+id/et_card_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="48dp"
+        android:ems="10"
+        android:hint="xxxxxxxxxxxxxxxx"
+        android:inputType="textPersonName"
+        android:maxLength="16"
+        app:layout_constraintBottom_toTopOf="@+id/et_name_on_card"
+        app:layout_constraintStart_toEndOf="@+id/tv_card_num" />
+
+    <EditText
+        android:id="@+id/et_name_on_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint="first m.i. last"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/et_date"
+        app:layout_constraintStart_toEndOf="@+id/tv_name_on_card" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
