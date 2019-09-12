@@ -20,42 +20,17 @@ public class CreditCard extends AppCompatActivity {
 
         final EditText editText = (EditText)findViewById(R.id.et_date);
 
-//        editText.addTextChangedListener(new TextWatcher() {
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {}
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start,
-//                                          int count, int after) {
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start,
-//                                      int before, int count) {
-//                if(s.length() == 2) {
-//                    editText.setText(editText.getText()+"/");
-//                    editText.setSelection(editText.length());
-//                }
-//
-//            }
-//        });
-
 
 
         Button btn_pay = (Button)findViewById(R.id.btn_submit_payment);
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context = getApplicationContext();
-
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, "Payment confirmed!", duration);
-                toast.show();;
-
-                Intent intent = new Intent(CreditCard.this, MainActivity.class);
-                startActivity(intent);
+                if (checkValidInformation()) {
+                    sendToast("Payment Confirmed!");
+                    Intent intent = new Intent(CreditCard.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -97,5 +72,45 @@ public class CreditCard extends AppCompatActivity {
         tv_name.setText(savedInstanceState.getString(SAVE_NAME));
         tv_date.setText(savedInstanceState.getString(SAVE_DATE));
         tv_ccv.setText(savedInstanceState.getString(SAVE_CCV));
+    }
+
+    protected boolean checkValidInformation() {
+        TextView tv_card_num = findViewById(R.id.et_card_num);
+        TextView tv_name = findViewById(R.id.et_name_on_card);
+        TextView tv_date = findViewById(R.id.et_date);
+        TextView tv_ccv = findViewById(R.id.et_ccv);
+
+        if (tv_card_num.getText().toString().length() != 16) {
+            sendToast("Enter a valid card number");
+            return false;
+        }
+
+        if (tv_name.getText().toString().length() == 0) {
+            sendToast("Enter name on card");
+            return false;
+        }
+
+        if (tv_date.getText().toString().length() == 0) {
+            sendToast("Enter expiration date");
+            return false;
+        }
+
+        if (tv_ccv.getText().toString().length() != 3) {
+            sendToast("Enter a valid CCV");
+            return false;
+        }
+
+        return true;
+
+    }
+
+    protected void sendToast(String text) {
+        Context context = getApplicationContext();
+
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();;
+
     }
 }

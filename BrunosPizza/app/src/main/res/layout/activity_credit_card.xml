@@ -99,10 +99,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:text="CCV"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/et_ccv"
-                app:layout_constraintHorizontal_bias="0.556"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Card Number"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_name_on_card"
                 app:layout_constraintEnd_toStartOf="@+id/et_card_num"
                 app:layout_constraintHorizontal_bias="0.25"
@@ -123,25 +123,25 @@
                 android:id="@+id/tv_name_on_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="36dp"
+                android:layout_marginBottom="52dp"
                 android:text="Name on Card"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_exp_date"
                 app:layout_constraintEnd_toStartOf="@+id/et_name_on_card"
-                app:layout_constraintHorizontal_bias="0.145"
+                app:layout_constraintHorizontal_bias="0.203"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_exp_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="48dp"
+                android:layout_marginBottom="52dp"
                 android:gravity="right"
                 android:text="Exp. Date"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_ccv"
                 app:layout_constraintEnd_toStartOf="@+id/et_date"
-                app:layout_constraintHorizontal_bias="0.415"
+                app:layout_constraintHorizontal_bias="0.381"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
