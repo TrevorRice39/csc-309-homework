@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     num--;
                 }
                 tv_numAdult.setText(num + "");
+                updateCost();
             }
         });
 
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int num = Integer.parseInt(tv_numAdult.getText().toString()) + 1;
                 tv_numAdult.setText(num + "");
+                updateCost();
             }
         });
 
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     num--;
                 }
                 tv_numChild.setText(num + "");
+                updateCost();
             }
         });
 
@@ -66,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 int num = Integer.parseInt(tv_numChild.getText().toString());
                 num++;
                 tv_numChild.setText(num + "");
+                updateCost();
             }
         });
 
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     sendToast("You must have at least one adult!");
                 }
                 else {
-                    Intent intent = new Intent(MainActivity.this, CreditCardInfo.class);
+                    Intent intent = new Intent(MainActivity.this, CreditCard.class);
                     intent.putExtra("EXTRA_SESSION_ID", num);
                     startActivity(intent);
                 }
@@ -90,6 +96,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    protected void updateCost() {
+        TextView adult = findViewById(R.id.tv_adult_num);
+        TextView child = findViewById(R.id.tv_child_num);
+        TextView cost = findViewById(R.id.tv_cost_val);
+
+        int adultNum = Integer.parseInt(adult.getText().toString());
+        int childNum = Integer.parseInt(child.getText().toString());
+
+        double costNum = adultNum * 29.95 + childNum * 15.95;
+        double total = costNum + costNum * 0.06;
+
+        String totalString = String.format("%.2f", total);
+        cost.setText(totalString + "");
+
+    }
     protected void sendToast(String text) {
         Context context = getApplicationContext();
 
@@ -107,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tv_numAdult = (TextView)findViewById(R.id.tv_adult_num);
         TextView tv_numChild = (TextView)findViewById(R.id.tv_child_num);
+        TextView tv_cost = findViewById(R.id.tv_cost_val);
 
         // save the current letters on the board
         int numAdult = Integer.parseInt(tv_numAdult.getText().toString());
@@ -114,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         savedInstanceState.putInt(SAVE_NUM_ADULT, numAdult);
         savedInstanceState.putInt(SAVE_NUM_CHILD, numChild);
-
+        updateCost();
     }
 
     @Override
@@ -129,5 +151,6 @@ public class MainActivity extends AppCompatActivity {
 
         tv_numAdult.setText(numAdult + "");
         tv_numChild.setText(numChild + "");
+        updateCost();
     }
 }

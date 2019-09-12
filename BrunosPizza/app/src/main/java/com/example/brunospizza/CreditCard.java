@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class credit_card extends AppCompatActivity {
+public class CreditCard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class credit_card extends AppCompatActivity {
                 Toast toast = Toast.makeText(context, "Payment confirmed!", duration);
                 toast.show();;
 
-                Intent intent = new Intent(CreditCardInfo.this, MainActivity.class);
+                Intent intent = new Intent(CreditCard.this, MainActivity.class);
                 startActivity(intent);
             }
         });

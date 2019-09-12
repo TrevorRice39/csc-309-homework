@@ -7,21 +7,24 @@
     tools:context=".CreditCard">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="689dp"
+        android:layout_height="318dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.494">
 
         <TextView
             android:id="@+id/tv_enter_payment"
             android:layout_width="303dp"
             android:layout_height="49dp"
+            android:layout_marginTop="24dp"
             android:text="Enter payment info"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,34 +32,40 @@
             android:id="@+id/btn_submit_payment"
             android:layout_width="69dp"
             android:layout_height="40dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="16dp"
             android:text="Pay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.427"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.591" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
+            android:layout_width="233dp"
+            android:layout_height="191dp"
+            android:layout_marginStart="228dp"
+            android:layout_marginLeft="228dp"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/btn_submit_payment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_enter_payment"
-            app:layout_constraintVertical_bias="0.024"
+            app:layout_constraintVertical_bias="0.129"
             tools:visibility="visible">
 
             <EditText
                 android:id="@+id/et_card_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="12dp"
                 android:ems="10"
                 android:hint="xxxxxxxxxxxxxxxx"
                 android:inputType="textPersonName"
                 android:maxLength="16"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/et_name_on_card"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -64,10 +73,11 @@
                 android:id="@+id/et_name_on_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="12dp"
                 android:ems="10"
                 android:hint="first m.i. last"
                 android:inputType="textPersonName"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/et_date"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -75,10 +85,11 @@
                 android:id="@+id/et_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="12dp"
                 android:ems="10"
                 android:hint="mm/yy"
                 android:inputType="date"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/et_ccv"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -86,10 +97,10 @@
                 android:id="@+id/et_ccv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:hint="xxx"
                 android:inputType="textPassword"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -97,53 +108,53 @@
                 android:id="@+id/tv_ccv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="16dp"
                 android:text="CCV"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/et_ccv"
-                app:layout_constraintHorizontal_bias="0.556"
+                app:layout_constraintHorizontal_bias="0.876"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_card_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Card Number"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_name_on_card"
-                app:layout_constraintEnd_toStartOf="@+id/et_card_num"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/tv_name_on_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="36dp"
+                android:layout_marginBottom="24dp"
                 android:text="Name on Card"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_exp_date"
                 app:layout_constraintEnd_toStartOf="@+id/et_name_on_card"
-                app:layout_constraintHorizontal_bias="0.145"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_exp_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="48dp"
+                android:layout_marginBottom="28dp"
                 android:gravity="right"
                 android:text="Exp. Date"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_ccv"
                 app:layout_constraintEnd_toStartOf="@+id/et_date"
-                app:layout_constraintHorizontal_bias="0.415"
+                app:layout_constraintHorizontal_bias="0.789"
                 app:layout_constraintStart_toStartOf="parent" />
 
+            <TextView
+                android:id="@+id/tv_card_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card Number"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_name_on_card"
+                app:layout_constraintEnd_toStartOf="@+id/et_card_num"
+                app:layout_constraintHorizontal_bias="0.529"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.32" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
