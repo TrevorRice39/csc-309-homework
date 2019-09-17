@@ -34,50 +34,52 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout">
 
-            <RadioButton
-                android:id="@+id/rb_monday"
+            <Switch
+                android:id="@+id/sw_monday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monday"
-                app:layout_constraintBottom_toTopOf="@+id/rb_tuesday"
-                app:layout_constraintStart_toStartOf="@+id/rb_tuesday"
+                android:text="Monday  "
+                app:layout_constraintBottom_toTopOf="@+id/sw_tuesday"
+                app:layout_constraintEnd_toEndOf="@+id/sw_tuesday"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioButton
-                android:id="@+id/rb_wednesday"
+            <Switch
+                android:id="@+id/sw_thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wednesday"
-                app:layout_constraintBottom_toTopOf="@+id/rb_thursday"
-                app:layout_constraintStart_toStartOf="@+id/rb_thursday"
-                app:layout_constraintTop_toBottomOf="@+id/rb_tuesday" />
+                android:text="Thursday  "
+                app:layout_constraintBottom_toTopOf="@+id/sw_friday"
+                app:layout_constraintEnd_toEndOf="@+id/sw_friday"
+                app:layout_constraintTop_toBottomOf="@+id/sw_wednesday" />
 
-            <RadioButton
-                android:id="@+id/rb_thursday"
+            <Switch
+                android:id="@+id/sw_wednesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thursday"
-                app:layout_constraintBottom_toTopOf="@+id/rb_friday"
-                app:layout_constraintStart_toStartOf="@+id/rb_friday"
-                app:layout_constraintTop_toBottomOf="@+id/rb_wednesday" />
+                android:text="Wednesday  "
+                app:layout_constraintBottom_toTopOf="@+id/sw_thursday"
+                app:layout_constraintEnd_toEndOf="@+id/sw_thursday"
+                app:layout_constraintTop_toBottomOf="@+id/sw_tuesday" />
 
-            <RadioButton
-                android:id="@+id/rb_friday"
+            <Switch
+                android:id="@+id/sw_tuesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Friday"
+                android:text="Tuesday  "
+                app:layout_constraintBottom_toTopOf="@+id/sw_wednesday"
+                app:layout_constraintEnd_toEndOf="@+id/sw_wednesday"
+                app:layout_constraintTop_toBottomOf="@+id/sw_monday" />
+
+            <Switch
+                android:id="@+id/sw_friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:text="Friday  "
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rb_thursday" />
-
-            <RadioButton
-                android:id="@+id/rb_tuesday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tuesday"
-                app:layout_constraintBottom_toTopOf="@+id/rb_wednesday"
-                app:layout_constraintStart_toStartOf="@+id/rb_wednesday"
-                app:layout_constraintTop_toBottomOf="@+id/rb_monday" />
+                app:layout_constraintTop_toBottomOf="@+id/sw_thursday" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -90,7 +92,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btn_end_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -100,11 +102,11 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/btn_end_time"
+                android:id="@+id/btn_start_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Start Time"
-                app:layout_constraintBottom_toTopOf="@+id/button2"
+                app:layout_constraintBottom_toTopOf="@+id/btn_end_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +116,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/btn_add_course"
+            android:id="@+id/btn_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
