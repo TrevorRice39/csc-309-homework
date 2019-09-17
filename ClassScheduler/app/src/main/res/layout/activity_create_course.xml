@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateCourse">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="322dp"
+        android:layout_height="443dp"
+        android:layout_marginBottom="128dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/et_course_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Course Name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="128dp"
+            android:layout_height="289dp"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout">
+
+            <RadioButton
+                android:id="@+id/rb_monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday"
+                app:layout_constraintBottom_toTopOf="@+id/rb_tuesday"
+                app:layout_constraintStart_toStartOf="@+id/rb_tuesday"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioButton
+                android:id="@+id/rb_wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wednesday"
+                app:layout_constraintBottom_toTopOf="@+id/rb_thursday"
+                app:layout_constraintStart_toStartOf="@+id/rb_thursday"
+                app:layout_constraintTop_toBottomOf="@+id/rb_tuesday" />
+
+            <RadioButton
+                android:id="@+id/rb_thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thursday"
+                app:layout_constraintBottom_toTopOf="@+id/rb_friday"
+                app:layout_constraintStart_toStartOf="@+id/rb_friday"
+                app:layout_constraintTop_toBottomOf="@+id/rb_wednesday" />
+
+            <RadioButton
+                android:id="@+id/rb_friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friday"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rb_thursday" />
+
+            <RadioButton
+                android:id="@+id/rb_tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuesday"
+                app:layout_constraintBottom_toTopOf="@+id/rb_wednesday"
+                app:layout_constraintStart_toStartOf="@+id/rb_wednesday"
+                app:layout_constraintTop_toBottomOf="@+id/rb_monday" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="141dp"
+            android:layout_height="143dp"
+            android:layout_marginBottom="160dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="End Time"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btn_end_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Start Time"
+                app:layout_constraintBottom_toTopOf="@+id/button2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.488" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btn_add_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Add Course"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

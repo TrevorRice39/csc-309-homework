@@ -1,0 +1,16 @@
+# Android Studio
+*.iml
+.idea
+#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+.gradle
+build/
+.navigation
+captures/
+output.json 
+local.properties
+*.zip
+
+# Projects (completed)
+TicTacToe/*
+BrunosPizza/*
+
