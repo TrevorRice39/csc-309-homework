@@ -7,8 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     protected static final int SETTINGS_REQUEST_CODE = 100;
+    public static List<Course> courses = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,5 +32,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult( createCourseIntent, SETTINGS_REQUEST_CODE );
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult( int requestCode, int resultCode, Intent data ) {
+
+        // did they approve new settings?
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            String courseName = data.getStringExtra("CourseName");
+            String startTime = data.getStringExtra("StartTime");
+            String endTime = data.getStringExtra("EndTime");
+            boolean days[] = data.getBooleanArrayExtra("Days");
+            Course course = new Course(days, courseName, startTime, endTime);
+            courses.add(course);
+        }
     }
 }

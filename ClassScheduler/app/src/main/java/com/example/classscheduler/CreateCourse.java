@@ -2,6 +2,9 @@ package com.example.classscheduler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,12 +12,17 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class CreateCourse extends AppCompatActivity {
-
+    String startTime = "";
+    String endTime = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,12 +34,12 @@ public class CreateCourse extends AppCompatActivity {
         Switch sw_wednesday = findViewById(R.id.sw_wednesday);
         Switch sw_thursday = findViewById(R.id.sw_thursday);
         Switch sw_friday = findViewById(R.id.sw_friday);
-        List<Switch> swList = new ArrayList<Switch>();
-        swList.add(sw_monday);
-        swList.add(sw_tuesday);
-        swList.add(sw_wednesday);
-        swList.add(sw_thursday);
-        swList.add(sw_thursday);
+        final List<Switch> swList = new ArrayList<Switch>();
+        swList.add(0, sw_monday);
+        swList.add(1, sw_tuesday);
+        swList.add(2, sw_wednesday);
+        swList.add(3, sw_thursday);
+        swList.add(4, sw_friday);
 
         // buttons for selecting the time frame
         Button btn_start_time = findViewById(R.id.btn_start_time);
@@ -39,14 +47,40 @@ public class CreateCourse extends AppCompatActivity {
 
         btn_start_time.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+
+                final Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(CreateCourse.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        startTime = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
+                    }
+                }, hour, minute, false);
+
+                timePickerDialog.show();
 
             }
         });
 
         btn_end_time.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+
+                final Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(CreateCourse.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        endTime = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
+                    }
+                }, hour, minute, false);
+
+                timePickerDialog.show();
 
             }
         });
@@ -56,9 +90,56 @@ public class CreateCourse extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TextView courseName = findViewById(R.id.et_course_name);
+
+                if (courseName.getText().toString().length() == 0) {
+                    sendToast("You must enter a course name");
+                    return;
+                }
+
+                boolean days[] = new boolean[5];
+                int numDays = 0;
+                for (int i = 0; i < 5; i++) {
+                    if (swList.get(i).isChecked()) {
+                        days[i] = true;
+                        numDays++;
+                    }
+                }
+
+                if (numDays == 0) {
+                    sendToast("You must select at least one day");
+                    return;
+                }
+
+                if (startTime.length() == 0) {
+                    sendToast("You must set a start time");
+                    return;
+                }
+
+                if (endTime.length() == 0) {
+                    sendToast("You must set an end time");
+                    return;
+                }
+
+                Intent main = getIntent();
+                main.putExtra("CourseName", courseName.getText().toString());
+                main.putExtra("StartTime", startTime);
+                main.putExtra("EndTime", endTime);
+                main.putExtra("Days", days);
+                setResult(RESULT_OK, main);
+                finish();
 
             }
         });
+
+    }
+    protected void sendToast(String text) {
+        Context context = getApplicationContext();
+
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();;
 
     }
 }
