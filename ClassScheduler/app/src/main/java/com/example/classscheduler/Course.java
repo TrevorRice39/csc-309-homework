@@ -13,4 +13,18 @@ public class Course {
         this.courseStartTime = courseStartTime;
         this.courseStartTime = courseEndTime;
     }
+
+    @Override
+    public String toString() {
+        String days = "";
+        String dayNames = "MWTRF";
+        for (int i = 0; i < 5; i++) {
+            if (this.days[i]) {
+                days += dayNames.charAt(i) + ", ";
+            }
+        }
+        days = days.substring(0, days.length()-1);
+
+        return this.courseName + "      " + days + "     " + this.courseStartTime + "       " + this.courseEndTime;
+    }
 }

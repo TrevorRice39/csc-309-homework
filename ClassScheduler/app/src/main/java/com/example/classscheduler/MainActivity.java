@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,22 @@ public class MainActivity extends AppCompatActivity {
                 // settingsIntent.putExtra();
                 // start the activity, getting a response
                 startActivityForResult( createCourseIntent, SETTINGS_REQUEST_CODE );
+            }
+        });
+
+        btn_view_schedule.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent scheduleIntent = new Intent(getApplicationContext(), Schedule.class);
+                TextView tv_courses = findViewById(R.id.tv_courses);
+                String str_courses = "";
+                for (int i = 0; i < courses.size(); i++) {
+                    str_courses += courses.get(i).toString() + " ";
+                }
+                tv_courses.setText(str_courses);
+                startActivity(scheduleIntent);
             }
         });
     }
