@@ -14,7 +14,7 @@ public class Schedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         Intent intent = getIntent();
         String courses = intent.getStringExtra("courses");
         System.out.println("courses " + courses);

@@ -21,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(getIntent(),
-                ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
 
         // buttons to add a class or view your current schedule

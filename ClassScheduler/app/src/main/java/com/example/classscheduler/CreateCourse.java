@@ -28,7 +28,7 @@ public class CreateCourse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_course);
-
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         // radio buttons for the days of the week
         Switch sw_monday = findViewById(R.id.sw_monday);
         Switch sw_tuesday = findViewById(R.id.sw_tuesday);
@@ -85,6 +85,7 @@ public class CreateCourse extends AppCompatActivity {
 
             }
         });
+
 
         // submit your changes button
         Button btn_submit = findViewById(R.id.btn_submit);
