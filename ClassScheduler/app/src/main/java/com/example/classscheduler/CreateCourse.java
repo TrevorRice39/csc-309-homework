@@ -23,6 +23,7 @@ import java.util.List;
 public class CreateCourse extends AppCompatActivity {
     String startTime = "";
     String endTime = "";
+    final List<Switch> swList = new ArrayList<Switch>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,7 @@ public class CreateCourse extends AppCompatActivity {
         Switch sw_wednesday = findViewById(R.id.sw_wednesday);
         Switch sw_thursday = findViewById(R.id.sw_thursday);
         Switch sw_friday = findViewById(R.id.sw_friday);
-        final List<Switch> swList = new ArrayList<Switch>();
+
         swList.add(0, sw_monday);
         swList.add(1, sw_tuesday);
         swList.add(2, sw_wednesday);
@@ -97,6 +98,11 @@ public class CreateCourse extends AppCompatActivity {
                     return;
                 }
 
+                if (courseName.getText().length() > 20) {
+                    sendToast("Course name must be 12 characters or less");
+                    return;
+                }
+
                 boolean days[] = new boolean[5];
                 int numDays = 0;
                 for (int i = 0; i < 5; i++) {
@@ -141,5 +147,37 @@ public class CreateCourse extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();;
 
+    }
+    static final String SAVE_COURSE_NAME = "courseName";
+    static final String SAVE_DAYS = "days";
+
+    // saving the data in the activity
+    @Override
+    public void onSaveInstanceState( Bundle savedInstanceState ) {
+        super.onSaveInstanceState( savedInstanceState );
+        TextView courseName = findViewById(R.id.et_course_name);
+
+        savedInstanceState.putString(SAVE_COURSE_NAME, courseName.getText().toString());
+
+        boolean days[] = new boolean[5];
+        for (int i = 0; i < 5; i++) {
+            days[i] = swList.get(i).isChecked();
+        }
+        savedInstanceState.putBooleanArray(SAVE_DAYS, days);
+    }
+
+    // restoring the data
+    @Override
+    public void onRestoreInstanceState( Bundle savedInstanceState ) {
+        super.onRestoreInstanceState( savedInstanceState );
+        TextView courseName = findViewById(R.id.et_course_name);
+
+        String strCourseName = savedInstanceState.getString(SAVE_COURSE_NAME);
+        boolean days[] = savedInstanceState.getBooleanArray(SAVE_DAYS);
+
+        for (int i = 0; i < 5; i++) {
+            swList.get(i).setChecked(days[i]);
+        }
+        courseName.setText(strCourseName);
     }
 }

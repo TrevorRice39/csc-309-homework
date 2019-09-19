@@ -2,9 +2,12 @@ package com.example.classscheduler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        startActivity(getIntent(),
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
 
         // buttons to add a class or view your current schedule
         Button btn_add_class = findViewById(R.id.btn_add_class);
@@ -43,10 +49,11 @@ public class MainActivity extends AppCompatActivity {
                 TextView tv_courses = findViewById(R.id.tv_courses);
                 String str_courses = "";
                 for (int i = 0; i < courses.size(); i++) {
-                    str_courses += courses.get(i).toString() + " ";
+                    str_courses += courses.get(i).toString() + "\n";
                 }
-                tv_courses.setText(str_courses);
+                scheduleIntent.putExtra("courses", str_courses);
                 startActivity(scheduleIntent);
+
             }
         });
     }

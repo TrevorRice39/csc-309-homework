@@ -11,20 +11,18 @@ public class Course {
         this.days = days;
         this.courseName = courseName;
         this.courseStartTime = courseStartTime;
-        this.courseStartTime = courseEndTime;
+        this.courseEndTime = courseEndTime;
     }
 
     @Override
     public String toString() {
         String days = "";
-        String dayNames = "MWTRF";
+        String dayNames = "MTWRF";
         for (int i = 0; i < 5; i++) {
             if (this.days[i]) {
-                days += dayNames.charAt(i) + ", ";
+                days += dayNames.charAt(i);
             }
         }
-        days = days.substring(0, days.length()-1);
-
-        return this.courseName + "      " + days + "     " + this.courseStartTime + "       " + this.courseEndTime;
+        return courseName + ", " + days + ", " + this.courseStartTime + ", " + this.courseEndTime;
     }
 }
