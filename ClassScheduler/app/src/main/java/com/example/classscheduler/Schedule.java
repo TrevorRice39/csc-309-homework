@@ -14,10 +14,15 @@ public class Schedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+
+        // slide in, slide out animation
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+
+        // getting the data passed in from main
         Intent intent = getIntent();
         String courses = intent.getStringExtra("courses");
-        System.out.println("courses " + courses);
+
+        // populating the text view
         TextView tv_courses = findViewById(R.id.tv_courses);
         tv_courses.setText(tv_courses.getText() + "\n" + courses);
 
@@ -32,6 +37,7 @@ public class Schedule extends AppCompatActivity {
         super.onSaveInstanceState( savedInstanceState );
         TextView courses = findViewById(R.id.tv_courses);
 
+        // saving our text view
         savedInstanceState.putString(SAVE_COURSES, courses.getText().toString());
 
     }
@@ -43,7 +49,7 @@ public class Schedule extends AppCompatActivity {
         TextView courses = findViewById(R.id.tv_courses);
 
         String strCourses = savedInstanceState.getString(SAVE_COURSES);
-
+        // restoring our text view
         courses.setText(strCourses);
 
     }

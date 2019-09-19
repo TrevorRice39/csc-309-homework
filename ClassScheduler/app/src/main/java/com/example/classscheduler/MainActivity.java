@@ -21,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
+        // slide in, slide out animation
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
         // buttons to add a class or view your current schedule
         Button btn_add_class = findViewById(R.id.btn_add_class);
@@ -60,13 +61,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult( int requestCode, int resultCode, Intent data ) {
 
-        // did they approve new settings?
+        // did they submit the course or press the back button?
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             String courseName = data.getStringExtra("CourseName");
             String startTime = data.getStringExtra("StartTime");
             String endTime = data.getStringExtra("EndTime");
             boolean days[] = data.getBooleanArrayExtra("Days");
+
+            // create a new course object and add it to our list of courses
             Course course = new Course(days, courseName, startTime, endTime);
             courses.add(course);
         }
