@@ -11,10 +11,10 @@
         android:layout_height="239dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865">
+        app:layout_constraintVertical_bias="0.86">
 
         <EditText
             android:id="@+id/et_course_name"
@@ -31,20 +31,20 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:layout_marginStart="136dp"
+            android:layout_width="543dp"
+            android:layout_height="32dp"
             android:layout_marginBottom="140dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.399"
             app:layout_constraintStart_toStartOf="parent">
 
             <Switch
                 android:id="@+id/sw_monday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monday  "
+                android:layoutDirection="rtl"
+                android:text="  Mon"
                 app:layout_constraintEnd_toStartOf="@+id/sw_tuesday"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,8 @@
                 android:id="@+id/sw_thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thursday  "
+                android:layoutDirection="rtl"
+                android:text="  Thu"
                 app:layout_constraintBottom_toBottomOf="@+id/sw_wednesday"
                 app:layout_constraintEnd_toStartOf="@+id/sw_friday"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -65,7 +66,8 @@
                 android:id="@+id/sw_wednesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wednesday  "
+                android:layoutDirection="rtl"
+                android:text="  Wed"
                 app:layout_constraintBottom_toBottomOf="@+id/sw_tuesday"
                 app:layout_constraintEnd_toStartOf="@+id/sw_thursday"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -76,7 +78,8 @@
                 android:id="@+id/sw_tuesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tuesday  "
+                android:layoutDirection="rtl"
+                android:text="  Tue"
                 app:layout_constraintBottom_toBottomOf="@+id/sw_monday"
                 app:layout_constraintEnd_toStartOf="@+id/sw_wednesday"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -87,7 +90,8 @@
                 android:id="@+id/sw_friday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Friday  "
+                android:layoutDirection="rtl"
+                android:text="  Fri"
                 app:layout_constraintBottom_toBottomOf="@+id/sw_thursday"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
