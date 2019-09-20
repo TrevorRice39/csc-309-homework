@@ -1,3 +1,9 @@
+/*
+Name: Trevor Rice
+Purpose: This app allows users to create a schedule to keep track of their courses. From the main
+         screen you can view your current schedule, or go to the "Add Course" screen to set the
+         course name, time, and days it occurs.
+ */
 package com.example.classscheduler;
 
 import androidx.appcompat.app.AppCompatActivity;
