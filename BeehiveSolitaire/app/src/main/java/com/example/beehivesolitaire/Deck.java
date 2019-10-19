@@ -8,7 +8,7 @@ public class Deck {
     ArrayList<Card> beehive = new ArrayList<Card>();
     ArrayList<Card> pack = new ArrayList<Card>();
     ArrayList<Card> pile = new ArrayList<Card>();
-    Card[] garden = new Card[6];
+    GardenCard[] garden = new GardenCard[6];
 
     int numCards = 0;
 
@@ -18,6 +18,10 @@ public class Deck {
         char suit;
         int id;
 
+        Card () {
+
+        }
+
         Card(char rank, char suit, int id) {
             this.rank = rank;
             this.suit = suit;
@@ -25,6 +29,35 @@ public class Deck {
         }
     }
 
+    public class GardenCard extends Card {
+        int count = 1;
+
+        GardenCard (Card card) {
+            super(card.rank, card.suit, card.id);
+        }
+        GardenCard(char rank, char suit, int id) {
+            super(rank, suit, id);
+        }
+
+        public boolean addToGarden(Card card) {
+            char rank = card.rank;
+            char suit = card.suit;
+            int id = card.id;
+            if (rank == this.rank && id != this.id) {
+                this.rank = rank;
+                this.suit = suit;
+                this.id = id;
+                this.count++;
+                return true;
+            }
+            return false;
+        }
+
+
+        public boolean isFull() {
+            return count == 4;
+        }
+    }
     // add a card to the deck, called by main
     void addCard(char rank, char suit, int id) {
         // create a new card with the rank, suit, and id
@@ -56,12 +89,18 @@ public class Deck {
 
         // add 6 cards to the garden
         for (int index = 41; index > 35; index--) {
-            garden[index-36] = cards[index];
+            garden[index-36] = new GardenCard(cards[index]);
         }
 
         // add the rest to the pack
         for (int index = 35; index >= 0; index--) {
             pack.add(cards[index]);
         }
+    }
+
+    Card getTopBeehive() {
+        Card card = beehive.get(beehive.size() - 1);
+        beehive.remove(beehive.size() - 1);
+        return card;
     }
 }
