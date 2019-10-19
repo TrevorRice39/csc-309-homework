@@ -12,40 +12,42 @@
         android:layout_height="297dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/iv_beehive3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/iv_garden3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/c_b" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/iv_garden3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_beehive3"
+            android:layout_marginBottom="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_garden4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/c_b" />
+
+        <ImageView
+            android:id="@+id/iv_garden4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_garden3"
             app:layout_constraintEnd_toStartOf="@+id/iv_garden5"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_beehive3"
-            app:layout_constraintTop_toTopOf="@+id/iv_beehive3"
+            app:layout_constraintStart_toEndOf="@+id/iv_garden3"
+            app:layout_constraintTop_toTopOf="@+id/iv_garden3"
             app:srcCompat="@drawable/c_b" />
 
         <ImageView
             android:id="@+id/iv_garden5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_garden3"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_garden4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_garden3"
-            app:layout_constraintTop_toTopOf="@+id/iv_garden3"
+            app:layout_constraintStart_toEndOf="@+id/iv_garden4"
+            app:layout_constraintTop_toTopOf="@+id/iv_garden4"
             app:srcCompat="@drawable/c_b" />
 
         <ImageView
@@ -139,7 +141,7 @@
             app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="@+id/tv_pile"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/c_b" />
+            app:srcCompat="@drawable/c_" />
 
         <TextView
             android:id="@+id/tv_pile"
