@@ -8,8 +8,8 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="350dp"
-        android:layout_height="297dp"
+        android:layout_width="352dp"
+        android:layout_height="344dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -17,11 +17,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+        <TextView
+            android:id="@+id/tv_garden1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cards: 1"
+            app:layout_constraintEnd_toEndOf="@+id/iv_garden1"
+            app:layout_constraintStart_toStartOf="@+id/iv_garden1"
+            app:layout_constraintTop_toBottomOf="@+id/iv_garden1" />
+
+        <TextView
+            android:id="@+id/tv_garden0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cards: 1"
+            app:layout_constraintEnd_toEndOf="@+id/iv_garden0"
+            app:layout_constraintStart_toStartOf="@+id/iv_garden0"
+            app:layout_constraintTop_toBottomOf="@+id/iv_garden0" />
+
         <ImageView
             android:id="@+id/iv_garden3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
+            android:layout_marginBottom="76dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_garden4"
             app:layout_constraintHorizontal_bias="0.5"
@@ -87,6 +105,7 @@
             android:id="@+id/tv_garden"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="Garden"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -94,6 +113,42 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_garden2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cards: 1"
+            app:layout_constraintEnd_toEndOf="@+id/iv_garden2"
+            app:layout_constraintStart_toStartOf="@+id/iv_garden2"
+            app:layout_constraintTop_toBottomOf="@+id/iv_garden2" />
+
+        <TextView
+            android:id="@+id/tv_garden3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cards: 1"
+            app:layout_constraintEnd_toEndOf="@+id/iv_garden3"
+            app:layout_constraintStart_toStartOf="@+id/iv_garden3"
+            app:layout_constraintTop_toBottomOf="@+id/iv_garden3" />
+
+        <TextView
+            android:id="@+id/tv_garden4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cards: 1"
+            app:layout_constraintEnd_toEndOf="@+id/iv_garden4"
+            app:layout_constraintStart_toStartOf="@+id/iv_garden4"
+            app:layout_constraintTop_toBottomOf="@+id/iv_garden4" />
+
+        <TextView
+            android:id="@+id/tv_garden5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cards: 1"
+            app:layout_constraintEnd_toEndOf="@+id/iv_garden5"
+            app:layout_constraintStart_toStartOf="@+id/iv_garden5"
+            app:layout_constraintTop_toBottomOf="@+id/iv_garden5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,16 +163,13 @@
             android:id="@+id/tv_beehive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:text="Beehive"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.835"
             app:layout_constraintStart_toEndOf="@+id/tv_pack"
-            app:layout_constraintTop_toBottomOf="@+id/iv_beehive"
-            app:layout_constraintVertical_bias="0.38" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_beehive" />
 
         <TextView
             android:id="@+id/tv_pack"
@@ -125,11 +177,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:layout_marginLeft="48dp"
-            android:layout_marginBottom="36dp"
             android:text="Pack"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_draws"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
@@ -150,12 +201,10 @@
             android:text="Pile"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_beehive"
             app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toEndOf="@+id/iv_pack"
-            app:layout_constraintTop_toBottomOf="@+id/iv_pile"
-            app:layout_constraintVertical_bias="0.147" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_pile" />
 
         <ImageView
             android:id="@+id/iv_beehive"
@@ -175,5 +224,41 @@
             app:layout_constraintEnd_toEndOf="@+id/tv_pack"
             app:layout_constraintStart_toStartOf="@+id/tv_pack"
             app:srcCompat="@drawable/c_b" />
+
+        <TextView
+            android:id="@+id/tv_draws"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginBottom="24dp"
+            android:text="Draws: 12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_beehiveCards"
+            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_beehiveCards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="24dp"
+            android:text="Cards: 10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_beehive"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_pileCards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cards: 0"
+            app:layout_constraintEnd_toStartOf="@+id/iv_beehive"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toEndOf="@+id/iv_pack"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

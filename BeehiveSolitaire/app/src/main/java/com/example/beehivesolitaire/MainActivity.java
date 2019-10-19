@@ -14,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
     // creating a new deck
     Deck deck = new Deck();
     boolean isCardSelected = false;
@@ -135,14 +137,15 @@ public class MainActivity extends AppCompatActivity {
         pack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isCardSelected) {
-                    pack.setColorFilter(Color.TRANSPARENT);
+                // if there is not a move possible
+                if (!deck.movePossible()) {
+                    if(deck.drawThreeFromPack()) {
+                        updateCards();
+                    }
+                    else {
+                        System.out.println("you lose");
+                    }
                 }
-                else {
-                    selectCard(deck.pack.get(deck.pack.size() - 1), "pack");
-                    pack.setColorFilter(Color.LTGRAY, PorterDuff.Mode.DARKEN);
-                }
-                isCardSelected = !isCardSelected;
             }
         });
 
@@ -152,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (isCardSelected) {
                     beehive.setColorFilter(Color.TRANSPARENT);
+                    return;
                 }
                 else {
                     selectCard(deck.beehive.get(deck.beehive.size() - 1), "beehive");
@@ -167,10 +171,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (isCardSelected) {
                     pile.setColorFilter(Color.TRANSPARENT);
+                    return;
                 }
                 else {
-                    selectCard(deck.pile.get(deck.pile.size() - 1), "pile");
-                    pile.setColorFilter(Color.LTGRAY, PorterDuff.Mode.DARKEN);
+                    if (deck.pile.size() > 0) {
+                        selectCard(deck.pile.get(deck.pile.size() - 1), "pile");
+                        pile.setColorFilter(Color.LTGRAY, PorterDuff.Mode.DARKEN);
+                    }
                 }
                 isCardSelected = !isCardSelected;
             }
@@ -212,13 +219,33 @@ public class MainActivity extends AppCompatActivity {
         garden4.setImageResource(deck.garden[4].id);
         garden5.setImageResource(deck.garden[5].id);
 
+        TextView tv_garden0 = findViewById(R.id.tv_garden0);
+        TextView tv_garden1 = findViewById(R.id.tv_garden1);
+        TextView tv_garden2 = findViewById(R.id.tv_garden2);
+        TextView tv_garden3 = findViewById(R.id.tv_garden3);
+        TextView tv_garden4 = findViewById(R.id.tv_garden4);
+        TextView tv_garden5 = findViewById(R.id.tv_garden5);
+
+        tv_garden0.setText("Cards: " + deck.garden[0].count);
+        tv_garden1.setText("Cards: " + deck.garden[1].count);
+        tv_garden2.setText("Cards: " + deck.garden[2].count);
+        tv_garden3.setText("Cards: " + deck.garden[3].count);
+        tv_garden4.setText("Cards: " + deck.garden[4].count);
+        tv_garden5.setText("Cards: " + deck.garden[5].count);
+
         ImageView beehive = findViewById(R.id.iv_beehive);
-        beehive.setImageResource(deck.beehive.get(deck.beehive.size() - 1).id);
+        if (deck.beehive.size() > 0) {
+            beehive.setImageResource(deck.beehive.get(deck.beehive.size() - 1).id);
+        }
 
         ImageView pack = findViewById(R.id.iv_pack);
-        pack.setImageResource(deck.pack.get(deck.pack.size() - 1).id);
+        pack.setImageResource(R.drawable.c_b);
 
         ImageView pile = findViewById(R.id.iv_pile);
+        if (deck.pile.size() > 0) {
+            pile.setImageResource(deck.pile.get(deck.pile.size() - 1).id);
+        }
+
 
         garden0.setColorFilter(Color.TRANSPARENT);
         garden1.setColorFilter(Color.TRANSPARENT);
@@ -229,6 +256,16 @@ public class MainActivity extends AppCompatActivity {
         beehive.setColorFilter(Color.TRANSPARENT);
         pack.setColorFilter(Color.TRANSPARENT);
         pile.setColorFilter(Color.TRANSPARENT);
+
+
+        TextView draws = findViewById(R.id.tv_draws);
+        draws.setText("Draws: " + (int)(deck.pack.size()/3) + " ");
+
+        TextView numPile = findViewById(R.id.tv_pileCards);
+        numPile.setText("Cards: " + deck.pile.size());
+
+        TextView numBeehive = findViewById(R.id.tv_beehiveCards);
+        numBeehive.setText("Cards: " + deck.beehive.size());
     }
 
     private void selectCard(Deck.Card card, String type) {

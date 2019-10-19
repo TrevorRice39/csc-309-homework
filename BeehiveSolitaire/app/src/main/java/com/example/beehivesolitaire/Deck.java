@@ -103,4 +103,51 @@ public class Deck {
         beehive.remove(beehive.size() - 1);
         return card;
     }
+
+    boolean movePossible() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = i + 1; j < 6; j++) {
+                if (garden[i].rank == garden[j].rank) {
+                    return true;
+                }
+            }
+        }
+
+        if (beehive.size() > 0) {
+            Card card = beehive.get(beehive.size() - 1);
+            for (int i = 0; i < 6; i++) {
+                if (garden[i].rank == card.rank) {
+                    return true;
+                }
+            }
+        }
+
+        if (pile.size() > 0) {
+            Card card = pile.get(pile.size() - 1);
+            for (int i = 0; i < 6; i++) {
+                if (garden[i].rank == card.rank) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    boolean drawThreeFromPack() {
+        if (pack.size() != 0) {
+            int index = pack.size() - 1;
+            Card card1 = pack.get(index);
+            Card card2 = pack.get(index -1);
+            Card card3 = pack.get(index - 2);
+            pack.remove(index);
+            pack.remove(index - 1);
+            pack.remove(index - 2);
+
+            pile.add(card1);
+            pile.add(card2);
+            pile.add(card3);
+            return true;
+        }
+        return false;
+    }
 }
