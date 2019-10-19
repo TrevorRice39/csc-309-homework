@@ -46,8 +46,51 @@ public class Deck {
             if (rank == this.rank && id != this.id) {
                 this.rank = rank;
                 this.suit = suit;
+
+                boolean inGarden = false;
+                int index = -1;
+                for (int i = 0; i < 6; i++) {
+                    if (garden[i].id == id) {
+                        inGarden = true;
+                        index = i;
+                    }
+                }
+
+                if (inGarden) {
+                    System.out.println("in garden");
+                    System.out.println(this.count);
+                    this.count += garden[index].count;
+                    System.out.println(this.count);
+
+                    System.out.println("i = " + index);
+                    for (int i = 0; i < 6; i++) {
+                        System.out.println("garden: " + garden[i].count);
+                    }
+                    garden[index].count = 1;
+                }
+                else {
+                    this.count++;
+                }
                 this.id = id;
-                this.count++;
+
+
+                if (count == 4) {
+                    Card newCard;
+                    if (beehive.size() > 0) {
+                        newCard = getTopBeehive();
+                    }
+                    else if(pile.size() > 0) {
+                        newCard = getTopPile();
+                    }
+                    else {
+                        drawThreeFromPack();
+                        newCard = getTopPile();
+                    }
+                    this.count = 1;
+                    this.rank = newCard.rank;
+                    this.suit = newCard.suit;
+                    this.id = newCard.id;
+                }
                 return true;
             }
             return false;
@@ -82,6 +125,10 @@ public class Deck {
         // shuffle the deck
         shuffleDeck();
 
+        beehive.clear();
+        garden = new GardenCard[6];
+        pack.clear();
+
         // add ten cards to beehive
         for (int index = 51 ;index > 41; index--) {
             beehive.add(cards[index]);
@@ -99,8 +146,20 @@ public class Deck {
     }
 
     Card getTopBeehive() {
+        if (beehive.size() == 0) {
+            return null;
+        }
         Card card = beehive.get(beehive.size() - 1);
         beehive.remove(beehive.size() - 1);
+        return card;
+    }
+
+    Card getTopPile() {
+        if (pile.size() == 0) {
+            return null;
+        }
+        Card card = pile.get(pile.size() - 1);
+        pile.remove(pile.size() - 1);
         return card;
     }
 
