@@ -15,7 +15,7 @@ public class Deck {
     int numCards = 0;
 
     // card class to hold rank, suit, and id for a card
-    public class Card {
+    public static class Card {
         char rank;
         char suit;
         int id;

@@ -458,5 +458,32 @@ public class MainActivity extends AppCompatActivity {
 
         deck.pack.clear();
         deck.beehive.clear();
+        deck.pile.clear();
+
+        for (int i = 0; i < beehiveSuits.size(); i++) {
+            System.out.println(i);
+            Deck.Card card = new Deck.Card(beehiveRanks.get(i).charAt(0), beehiveSuits.get(i).charAt(0), beehiveIds.get(i));
+            deck.beehive.add(card);
+        }
+
+        for (int i = 0; i < packSuits.size(); i++) {
+            System.out.println(i);
+            Deck.Card card = new Deck.Card(packRanks.get(i).charAt(0), packSuits.get(i).charAt(0), packIds.get(i));
+            deck.pack.add(card);
+        }
+
+        for (int i = 0; i < pileSuits.size(); i++) {
+            System.out.println(i);
+            Deck.Card card = new Deck.Card(pileRanks.get(i).charAt(0), pileSuits.get(i).charAt(0), pileIds.get(i));
+            deck.pile.add(card);
+        }
+
+        for (int i = 0; i < 6; i++) {
+            deck.garden[i].count = gardenCount[i];
+            deck.garden[i].id = gardenIds[i];
+            deck.garden[i].rank = gardenRanks[i];
+            deck.garden[i].suit = gardenSuits[i];
+        }
+        updateCards();
     }
 }
