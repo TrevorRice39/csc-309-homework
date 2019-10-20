@@ -8,14 +8,12 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        android:id="@+id/constraintLayout2"
+        android:layout_width="289dp"
+        android:layout_height="363dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_garden1"
@@ -44,7 +42,6 @@
             app:layout_constraintEnd_toStartOf="@+id/iv_garden4"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_garden0"
             app:srcCompat="@drawable/c_b" />
 
         <ImageView
@@ -95,7 +92,7 @@
             android:id="@+id/iv_garden0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="60dp"
             app:layout_constraintEnd_toStartOf="@+id/iv_garden1"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,8 +110,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_garden4" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_garden2"
@@ -155,12 +151,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_width="272dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_beehive"
@@ -169,17 +165,16 @@
             android:text="Beehive"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_beehiveCards"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.847"
-            app:layout_constraintStart_toEndOf="@+id/tv_pack" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_beehive" />
 
         <TextView
             android:id="@+id/tv_pack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
             android:text="Pack"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -190,32 +185,44 @@
             android:id="@+id/iv_pile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/tv_pile"
-            app:layout_constraintHorizontal_bias="0.419"
-            app:layout_constraintStart_toStartOf="@+id/tv_pile"
+            android:layout_marginTop="164dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_pile"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/c_" />
 
         <TextView
             android:id="@+id/tv_pile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
             android:text="Pile"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/iv_beehive"
-            app:layout_constraintHorizontal_bias="0.51"
-            app:layout_constraintStart_toEndOf="@+id/iv_pack"
-            app:layout_constraintTop_toBottomOf="@+id/iv_pile" />
+            app:layout_constraintBottom_toTopOf="@+id/tv_pileCards"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_pileCards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="4dp"
+            android:text="Cards: 0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/iv_beehive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/tv_beehive"
-            app:layout_constraintEnd_toEndOf="@+id/tv_beehive"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_beehive"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/c_b" />
 
@@ -223,41 +230,37 @@
             android:id="@+id/iv_pack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_pack"
-            app:layout_constraintEnd_toEndOf="@+id/tv_pack"
-            app:layout_constraintStart_toStartOf="@+id/tv_pack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/c_b" />
 
         <TextView
             android:id="@+id/tv_draws"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginBottom="4dp"
             android:text="Draws: 12"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_beehiveCards"
-            app:layout_constraintHorizontal_bias="0.019"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_beehiveCards"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="44dp"
-            android:layout_marginRight="44dp"
+            android:layout_marginEnd="104dp"
+            android:layout_marginRight="104dp"
+            android:layout_marginBottom="24dp"
             android:text="Cards: 10"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_beehive"
+            app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/tv_pileCards"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cards: 0"
-            app:layout_constraintEnd_toStartOf="@+id/iv_beehive"
-            app:layout_constraintHorizontal_bias="0.511"
-            app:layout_constraintStart_toEndOf="@+id/iv_pack"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package com.example.beehivesolitaire;
 
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -57,15 +59,7 @@ public class Deck {
                 }
 
                 if (inGarden) {
-                    System.out.println("in garden");
-                    System.out.println(this.count);
                     this.count += garden[index].count;
-                    System.out.println(this.count);
-
-                    System.out.println("i = " + index);
-                    for (int i = 0; i < 6; i++) {
-                        System.out.println("garden: " + garden[i].count);
-                    }
                     garden[index].count = 1;
                 }
                 else {

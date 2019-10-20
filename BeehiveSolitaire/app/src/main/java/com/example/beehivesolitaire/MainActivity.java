@@ -18,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     // creating a new deck
@@ -309,11 +311,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void placeCard(Deck.Card card) {
         updateCards();
-        System.out.println("here");
         if (!deck.garden[secondGardenSelectedNumber].addToGarden(cardSelected)) {
             return;
         }
-        System.out.println("here");
         switch (cardSelectedType) {
 
             case "garden":
@@ -342,22 +342,121 @@ public class MainActivity extends AppCompatActivity {
                     cardSelected.rank = topPile.rank;
                     deck.garden[gardenSelectedNumber].count = 1;
                 }
-                System.out.println("GARDEN");
                 break;
             case "beehive":
-                System.out.println("BEEHIVE");
                 deck.beehive.remove(deck.beehive.size() - 1);
                 break;
             case "pack":
-                System.out.println("PACK");;
                 deck.pack.remove(deck.pack.size() - 1);
                 break;
             case "pile":
-                System.out.println("PILE");
                 deck.pile.remove(deck.pile.size() - 1);
                 break;
         }
         updateCards();
     }
 
+
+    final String BEEHIVESUITS = "beehivesuits";
+    final String BEEHIVERANKS = "beehiveranks";
+    final String BEEHIVEIDS = "beehiveids";
+    final String PACKSUITS = "packsuits";
+    final String PACKRANKS = "packranks";
+    final String PACKIDS = "packids";
+    final String PILESUITS = "pilesuits";
+    final String PILERANKS = "pileranks";
+    final String PILEIDS = "pileids";
+    final String GARDENSUITS = "gardensuits";
+    final String GARDENRANKS = "gardenranks";
+    final String GARDENIDS = "gardenids";
+    final String GARDENCOUNT = "gardencount";
+
+    @Override
+    public void onSaveInstanceState(Bundle saved) {
+        super.onSaveInstanceState(saved);
+
+        ArrayList<String> beehiveSuits = new ArrayList<>();
+        ArrayList<String> beehiveRanks = new ArrayList<>();
+        ArrayList<Integer> beehiveIds = new ArrayList<>();
+
+        ArrayList<String> packSuits = new ArrayList<>();
+        ArrayList<String> packRanks = new ArrayList<>();
+        ArrayList<Integer> packIds = new ArrayList<>();
+
+        ArrayList<String> pileSuits = new ArrayList<>();
+        ArrayList<String> pileRanks = new ArrayList<>();
+        ArrayList<Integer> pileIds = new ArrayList<>();
+
+        char[] gardenSuits = new char[6];
+        char[] gardenRanks = new char[6];
+        int[] gardenIds = new int[6];
+        int[] gardenCount = new int[6];
+
+        for (Deck.Card card : deck.beehive) {
+            beehiveSuits.add(card.suit + "");
+            beehiveRanks.add(card.rank + "");
+            beehiveIds.add(card.id);
+        }
+
+        for (Deck.Card card : deck.pack) {
+            packSuits.add(card.suit + "");
+            packRanks.add(card.rank + "");
+            packIds.add(card.id);
+        }
+
+        for (Deck.Card card : deck.pile) {
+            pileSuits.add(card.suit + "");
+            pileRanks.add(card.rank + "");
+            pileIds.add(card.id);
+        }
+
+        for (int i = 0; i < 6; i++) {
+            gardenSuits[i] = deck.garden[i].suit;
+            gardenRanks[i] = deck.garden[i].rank;
+            gardenIds[i] = deck.garden[i].id;
+            gardenCount[i] = deck.garden[i].count;
+        }
+
+        saved.putStringArrayList(BEEHIVESUITS, beehiveSuits);
+        saved.putStringArrayList(BEEHIVERANKS, beehiveRanks);
+        saved.putIntegerArrayList(BEEHIVEIDS, beehiveIds);
+
+        saved.putStringArrayList(PACKSUITS, packSuits);
+        saved.putStringArrayList(PACKRANKS, packRanks);
+        saved.putIntegerArrayList(PACKIDS, packIds);
+
+        saved.putStringArrayList(PILESUITS, pileSuits);
+        saved.putStringArrayList(PILERANKS, pileRanks);
+        saved.putIntegerArrayList(PILEIDS, pileIds);
+
+        saved.putCharArray(GARDENSUITS, gardenSuits);
+        saved.putCharArray(GARDENRANKS, gardenRanks);
+        saved.putIntArray(GARDENIDS, gardenIds);
+        saved.putIntArray(GARDENCOUNT, gardenCount);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle saved) {
+        super.onRestoreInstanceState(saved);
+
+        ArrayList<String> beehiveSuits = saved.getStringArrayList(BEEHIVESUITS);
+        ArrayList<String> beehiveRanks = saved.getStringArrayList(BEEHIVERANKS);
+        ArrayList<Integer> beehiveIds = saved.getIntegerArrayList(BEEHIVEIDS);
+
+        ArrayList<String> packSuits = saved.getStringArrayList(PACKSUITS);
+        ArrayList<String> packRanks = saved.getStringArrayList(PACKRANKS);
+        ArrayList<Integer> packIds = saved.getIntegerArrayList(PACKIDS);
+
+        ArrayList<String> pileSuits = saved.getStringArrayList(PILESUITS);
+        ArrayList<String> pileRanks = saved.getStringArrayList(PILERANKS);
+        ArrayList<Integer> pileIds = saved.getIntegerArrayList(PILEIDS);
+
+        char[] gardenSuits = saved.getCharArray(GARDENSUITS);
+        char[] gardenRanks = saved.getCharArray(GARDENRANKS);
+        int[] gardenIds = saved.getIntArray(GARDENIDS);
+        int[] gardenCount = saved.getIntArray(GARDENCOUNT);
+
+        deck.pack.clear();
+        deck.beehive.clear();
+    }
 }
