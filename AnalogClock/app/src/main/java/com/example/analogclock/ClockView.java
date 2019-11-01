@@ -1,23 +1,17 @@
 package com.example.analogclock;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
-
 import androidx.annotation.Nullable;
-
-import java.util.Random;
 
 public class ClockView extends View {
     Paint blackPaint; // color for the clock
     Context c;
-    float seconds; // number of seconds elapsed
-
+    float seconds;
 
     // Constructors
     public ClockView(Context context) {
@@ -36,9 +30,13 @@ public class ClockView extends View {
 
     // initialize
     protected void init() {
-        // start at a random number of seconds
-        Random rand = new Random();
-        seconds = rand.nextInt(5000) + 1000;
+        System.out.println(System.currentTimeMillis());
+        // get current est time
+        seconds = (float)(System.currentTimeMillis()/1000.0);
+        // utc is 4 hours ahead
+        seconds -= 3600 * 4;
+        // no reason to keep seconds about 12*3600 seconds
+        seconds = seconds % (3600 * 12);
 
         // set the paint to black and stroke style
         blackPaint = new Paint();
@@ -65,9 +63,10 @@ public class ClockView extends View {
 
 
         // length of hour and second/minute marks
-        float hourLength = radius/8;
-        float minuteLength = radius/7;
+        float hourLength = radius/7;
+        float minuteLength = radius/9;
 
+        blackPaint.setStyle( Paint.Style.STROKE );
         // draw the outer circle on the clock
         blackPaint.setStrokeWidth(radius/20);
         canvas.drawCircle(centerX, centerY, radius, blackPaint);
@@ -81,6 +80,10 @@ public class ClockView extends View {
         // draw the second, minute, and hour hands
         drawHands(centerX, centerY, radius, canvas);
 
+        // drawing a circle in the center
+        blackPaint.setStyle( Paint.Style.FILL);
+        canvas.drawCircle(centerX, centerY, radius/25, blackPaint);
+
     }
 
     /*
@@ -91,17 +94,17 @@ public class ClockView extends View {
     private void drawHands(int centerX, int centerY, int radius, Canvas canvas) {
         // drawing the second hand
         // multiply the number of seconds by 6 and mod by 360
-        float angle = (6 * seconds)%360 - 90;
+        float angle = (float)(6 * seconds)%360 - 90;
 
         // calculate the point on the circle to draw to
         float x = centerX + (float)(Math.cos(Math.toRadians(angle)) * (radius * .75)); // length of second hand is 3/4 radius
         float y = centerY + (float)(Math.sin(Math.toRadians(angle)) * (radius * .75));
-        blackPaint.setStrokeWidth(2);
+        blackPaint.setStrokeWidth(5);
         canvas.drawLine(x, y, centerX, centerY, blackPaint);
 
         // draw the hour hand
         // number of seconds/3600 * (360/12) because there are twelve hour markings
-        angle = (30 * seconds/3600)%360 - 90;
+        angle = (float)(30 * seconds/3600)%360 - 90;
 
         // calculating the x and y for the point
         x = centerX + (float)(Math.cos(Math.toRadians(angle)) * (radius * .5)); // length of hour hand is 1/2 radius
@@ -111,7 +114,7 @@ public class ClockView extends View {
 
         // drawing the second hand
         // (360/60) * (seconds/60)
-        angle = (6 * seconds/60)%360 - 90;
+        angle = (float)(6 * seconds/60)%360 - 90;
 
         x = centerX + (float)(Math.cos(Math.toRadians(angle)) * (radius * .6));
         y = centerY + (float)(Math.sin(Math.toRadians(angle)) * (radius * .6));
@@ -119,18 +122,28 @@ public class ClockView extends View {
         canvas.drawLine(x, y, centerX, centerY, blackPaint);
     }
 
+    // drawing the hour and minute/second markings around the clock
+    // the skip variable is used to skip a certain multiple such as 12 when we draw our minute markings
     private void drawCircularLines(float centerX, float centerY, float radius, float length, float divisions,  Canvas canvas, int skip) {
+        // divide the clock into sections
+        // 12 and 60 for hours and minutes/seconds
         int increment = (int)(360/divisions);
         for (float i = 0; i <= 360; i = i + increment) {
+            // so we don't overlap hours and minutes
             if (i % skip == 0) {
                 continue;
             }
+
+            // find the angle
             float angle = i - 90;
+            // calculate the position on the circle
             float x1 = centerX + ((float)Math.cos(Math.toRadians(angle)) * (radius - 30));
             float y1 = centerY + ((float)Math.sin(Math.toRadians(angle)) * (radius - 30));
-            float x2 = 0;
-            float y2 = 0;
+            float x2;
+            float y2;
+            // if its vertical
             if (centerX == x1) {
+                // manually set x and y values
                 x2 = x1;
                 if (y1 > centerY) {
                     y2 = y1 - length;
@@ -140,23 +153,34 @@ public class ClockView extends View {
                 }
             }
             else {
+                // find the slope
                 float m = (y1 - centerY) / (x1 - centerX);
                 // y = mx + b
-                //b = y - mx
+                // b = y - mx
+                // find y intercept
                 float b = y1 - m * x1;
 
+                // find the inner point x
                 x2 = x1 - (length * (x1 - centerX)) / radius;
+                // calculate x2 using y = mx + b
                 y2 = m * x2 + b;
             }
             canvas.drawLine(x1, y1, x2, y2, blackPaint); //draw a line from center point back to the point
         }
     }
+
+    // runnable is called ever second
     Runnable timer = new Runnable() {
         @Override
         public void run() {
             View clockView = findViewById(R.id.clock_view);
+            // redraw the clock
             invalidate();
-            seconds ++;
+            // increment seconds by 1
+            seconds++;
+            // no need to keep time above 12 hours * 3600 seconds
+            seconds %= 12*3600;
+            // call this again in one second
             clockView.postDelayed( this, 1000 );
         }
     };
