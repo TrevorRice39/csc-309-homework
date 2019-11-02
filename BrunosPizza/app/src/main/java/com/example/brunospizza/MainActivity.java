@@ -13,14 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.Set;
-
 public class MainActivity extends AppCompatActivity {
-
-
-
+    private double taxRate = 0.06;
+    private double adultPrice = 29.95;
+    private double childPrice = 15.95;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
         int adultNum = Integer.parseInt(adult.getText().toString());
         int childNum = Integer.parseInt(child.getText().toString());
 
-        double costNum = adultNum * 29.95 + childNum * 15.95;
-        double total = costNum + costNum * 0.06;
+        double costNum = adultNum * adultPrice + childNum * childPrice;
+        double total = costNum + costNum * taxRate;
 
         String totalString = String.format("%.2f", total);
         cost.setText(totalString + "");
