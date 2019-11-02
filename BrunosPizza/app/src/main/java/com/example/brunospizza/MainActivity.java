@@ -7,12 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -171,6 +174,22 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    // respond to a menu item click
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // which item did they click?
+        switch ( item.getItemId() ) {
+            case R.id.menu_settings:
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                // unknown item
+                return false;
+        }
     }
 
 }
