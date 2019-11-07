@@ -1,14 +1,12 @@
 package com.example.brunospizza;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.EditTextPreference;
 import androidx.preference.PreferenceManager;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,9 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
 
 public class MainActivity extends AppCompatActivity {
     private double taxRate = 0.06;
@@ -118,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         double total = costNum + costNum * taxRate;
 
         String totalString = String.format("%.2f", total);
-        cost.setText(totalString + " $(" + String.format("%.2f", taxRate) + ")");
+        cost.setText("$" + totalString + " ($" + String.format("%.2f", taxRate) + " tax)");
 
     }
 
@@ -133,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // keys for our preferences
     static String child_price_key = "pref_child_price";
     static String adult_price_key = "pref_adult_price";
     static String tax_rate_key = "pref_tax_rate";
@@ -141,17 +137,23 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
+
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        // get the child price from the preferences
         childPrice = Double.parseDouble(preferences.getString(child_price_key, "15.95"));
+        // get the adult price from the preferences
         adultPrice = Double.parseDouble(preferences.getString(adult_price_key, "29.95"));
+        // get the tax rate from the preferences
         taxRate = Double.parseDouble(preferences.getString(tax_rate_key, "0.06"));
 
+        // adjust the textviews
         TextView tv_child_price = findViewById(R.id.tv_children);
         tv_child_price.setText("Children ($" + String.format("%.2f", childPrice) + ")");
 
         TextView tv_adult_price = findViewById(R.id.tv_adult);
         tv_adult_price.setText("Adults ($" + String.format("%.2f", adultPrice) + ")");
 
+        // update the cost with the new values
         updateCost();
 
     }
@@ -205,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // which item did they click?
         switch ( item.getItemId() ) {
+            // go to settings activity
             case R.id.menu_settings:
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
