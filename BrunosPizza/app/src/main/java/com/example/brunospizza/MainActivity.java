@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,11 +13,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import org.json.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
     private double taxRate = 0.06;
     private double adultPrice = 29.95;
     private double childPrice = 15.95;
+    private boolean isWritable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +106,37 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        String path = this.getFilesDir().getPath().toString() + "/settings.txt";
+        File settings = new File(path);
+
+        isExternalStorageWritable();
+        System.out.println(this.isWritable);
+        if (settings.exists()) {
+            try {
+                FileReader read = new FileReader("settings.txt");
+
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        else {
+            JSONObject settingsObject = new JSONObject();
+            try {
+                settingsObject.put("taxRate", "0.06");
+                settingsObject.put("childPrice", "15.95");
+                settingsObject.put("adultPrice", "29.95");
+                FileOutputStream outputStream;
+                outputStream = openFileOutput("settings.txt", Context.MODE_PRIVATE);
+                outputStream.write(settingsObject.toString().getBytes());
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
 
     }
 
@@ -185,6 +227,16 @@ public class MainActivity extends AppCompatActivity {
             default:
                 // unknown item
                 return false;
+        }
+    }
+
+    public void isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            this.isWritable = true;
+        }
+        else {
+            this.isWritable = false;
         }
     }
 
