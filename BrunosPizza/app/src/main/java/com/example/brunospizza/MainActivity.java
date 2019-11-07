@@ -1,11 +1,14 @@
 package com.example.brunospizza;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.EditTextPreference;
+import androidx.preference.PreferenceManager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,21 +16,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.json.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.InputStream;
+import org.w3c.dom.Text;
+
 
 public class MainActivity extends AppCompatActivity {
     private double taxRate = 0.06;
     private double adultPrice = 29.95;
     private double childPrice = 15.95;
-    private boolean isWritable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,38 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        String path = this.getFilesDir().getPath().toString() + "/settings.txt";
-        File settings = new File(path);
-
-        isExternalStorageWritable();
-        System.out.println(this.isWritable);
-        if (settings.exists()) {
-            try {
-                FileReader read = new FileReader("settings.txt");
-
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        else {
-            JSONObject settingsObject = new JSONObject();
-            try {
-                settingsObject.put("taxRate", "0.06");
-                settingsObject.put("childPrice", "15.95");
-                settingsObject.put("adultPrice", "29.95");
-                FileOutputStream outputStream;
-                outputStream = openFileOutput("settings.txt", Context.MODE_PRIVATE);
-                outputStream.write(settingsObject.toString().getBytes());
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
     }
 
     // calculates the cost and updates the cost text view
@@ -153,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         double total = costNum + costNum * taxRate;
 
         String totalString = String.format("%.2f", total);
-        cost.setText(totalString + "");
+        cost.setText(totalString + " $(" + String.format("%.2f", taxRate) + ")");
 
     }
 
@@ -168,7 +133,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    static String child_price_key = "pref_child_price";
+    static String adult_price_key = "pref_adult_price";
+    static String tax_rate_key = "pref_tax_rate";
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        childPrice = Double.parseDouble(preferences.getString(child_price_key, "15.95"));
+        adultPrice = Double.parseDouble(preferences.getString(adult_price_key, "29.95"));
+        taxRate = Double.parseDouble(preferences.getString(tax_rate_key, "0.06"));
+
+        TextView tv_child_price = findViewById(R.id.tv_children);
+        tv_child_price.setText("Children ($" + String.format("%.2f", childPrice) + ")");
+
+        TextView tv_adult_price = findViewById(R.id.tv_adult);
+        tv_adult_price.setText("Adults ($" + String.format("%.2f", adultPrice) + ")");
+
+        updateCost();
+
+    }
     static final String SAVE_NUM_ADULT = "numAdult";
     static final String SAVE_NUM_CHILD = "numChild";
 
@@ -229,15 +215,4 @@ public class MainActivity extends AppCompatActivity {
                 return false;
         }
     }
-
-    public void isExternalStorageWritable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            this.isWritable = true;
-        }
-        else {
-            this.isWritable = false;
-        }
-    }
-
 }
